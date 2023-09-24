@@ -4,6 +4,7 @@ import time
 import baseline_pic2text
 import tts
 import blip
+import speech2text
 
 # Initialize the camera
 cam_port = 0
@@ -20,7 +21,12 @@ def take_photo(image):
     cv.imwrite(filename, image)
     counter += 1
 
-    question = input("enter prompt:")
+    #question = input("enter prompt:")
+    question = speech2text.listen_for_text()
+    while not question:
+        question = speech2text.listen_for_text()
+        
+    print(question)
     
     text2read = blip.talk_to_img(image, question=question)
     if text2read.replace("\n","").replace(" ","") == "":

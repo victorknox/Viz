@@ -13,8 +13,8 @@ model = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b
 # img_url = 'https://storage.googleapis.com/sfr-vision-language-research/BLIP/demo.jpg' 
 # raw_image = Image.open(requests.get(img_url, stream=True).raw).convert('RGB')
 
-def talk_to_img(input_image, question = "question: describe this picture, Answer: "):
-    
+def talk_to_img(input_image, question = "This picture describes "):
+    print("blipping")
     inputs = processor(input_image, question, return_tensors="pt").to("cuda", torch.float16)
     generated_ids = model.generate(**inputs)
     generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0].strip()

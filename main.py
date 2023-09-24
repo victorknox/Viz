@@ -19,7 +19,15 @@ def take_photo(image):
     filename = f"Viz_{timestamp}_" + str(counter) + ".png"
     cv.imwrite(filename, image)
     counter += 1
-    text2read = blip.talk_to_img(image)
+
+    question = input("enter prompt:")
+    
+    text2read = blip.talk_to_img(image, question=question)
+    if text2read.replace("\n","").replace(" ","") == "":
+        text2read = "I'm sorry, I didn't understand the question."
+        
+    print(text2read)
+    print("\n"*10)
     tts.read_str(text2read) 
     
 

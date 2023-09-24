@@ -2,6 +2,8 @@ import cv2 as cv
 import datetime
 import time
 import baseline_pic2text
+import tts
+
 
 # Initialize the camera
 cam_port = 0
@@ -17,7 +19,9 @@ def take_photo(image):
     filename = f"Viz_{timestamp}_" + str(counter) + ".png"
     cv.imwrite(filename, image)
     counter += 1
-    baseline_pic2text.describe_img(image) 
+    text2read = baseline_pic2text.describe_img(image)
+    tts.read_str(text2read) 
+    
 
 
 while True:

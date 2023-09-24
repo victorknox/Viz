@@ -22,3 +22,4 @@ def describe_img(input_image):
     out = model.generate(**inputs)
     generated_text = processor.decode(out[0], skip_special_tokens=True)
     print(generated_text)
+    return generated_text

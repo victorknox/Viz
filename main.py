@@ -3,7 +3,7 @@ import datetime
 import time
 import baseline_pic2text
 import tts
-
+import blip
 
 # Initialize the camera
 cam_port = 0
@@ -19,7 +19,7 @@ def take_photo(image):
     filename = f"Viz_{timestamp}_" + str(counter) + ".png"
     cv.imwrite(filename, image)
     counter += 1
-    text2read = baseline_pic2text.describe_img(image)
+    text2read = blip.talk_to_img(image)
     tts.read_str(text2read) 
     
 
